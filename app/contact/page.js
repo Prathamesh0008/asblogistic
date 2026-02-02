@@ -100,20 +100,31 @@ export default function ContactPage() {
     setFormData(prev => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setIsSubmitting(true);
+  setSubmitSuccess(false);
+
+  try {
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      throw new Error(result.error || 'Failed to send message');
+    }
+
+    // Success!
+    setSubmitSuccess(true);
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    
-    console.log('Form submitted:', formData)
-    setIsSubmitting(false)
-    setSubmitSuccess(true)
-    
-    // Reset form after 3 seconds
+    // Reset form after 5 seconds
     setTimeout(() => {
-      setSubmitSuccess(false)
       setFormData({
         name: '',
         email: '',
@@ -122,9 +133,17 @@ export default function ContactPage() {
         subject: '',
         message: '',
         department: 'strategic'
-      })
-    }, 3000)
+      });
+      setSubmitSuccess(false);
+    }, 5000);
+
+  } catch (error) {
+    console.error('Error:', error);
+    alert(error.message || 'Something went wrong. Please try again.');
+  } finally {
+    setIsSubmitting(false);
   }
+};
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">

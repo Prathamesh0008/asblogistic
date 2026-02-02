@@ -1,9 +1,10 @@
 'use client'
 
-import { Menu, X, Package, Phone, Mail } from 'lucide-react'
+import { Menu, X, Phone, Mail } from 'lucide-react'
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import Image from 'next/image'
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -25,17 +26,20 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="bg-white shadow-md">
+    <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo with Orange (#F7A233) */}
-          <Link href="/" className="flex items-center space-x-2 group">
-            <div className="bg-[#F7A233] p-2 rounded group-hover:bg-[#e69122] transition-colors duration-200">
-              <Package className="h-8 w-8 text-white" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-[rgb(43,95,142)]">ASB LOGISTICS</h1>
-              <p className="text-xs text-gray-600">B.V.</p>
+          {/* Logo with Image */}
+          <Link href="/" className="flex items-center group">
+            <div className="relative h-12 w-40 md:h-14 md:w-48 lg:h-16 lg:w-56 transition-all duration-200 group-hover:opacity-90">
+              <Image
+                src="/ASBlogo.png" // Change this to your logo path
+                alt="ASB Logistics Logo"
+                fill
+                sizes="(max-width: 768px) 160px, (max-width: 1024px) 192px, 224px"
+                className="object-cover object-left"
+                priority
+              />
             </div>
           </Link>
 
@@ -75,6 +79,7 @@ export default function Navbar() {
           <button
             className="md:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           >
             {isMenuOpen ? (
               <X className="h-6 w-6 text-[rgb(43,95,142)]" />
