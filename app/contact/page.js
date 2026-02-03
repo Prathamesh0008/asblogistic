@@ -106,6 +106,8 @@ const handleSubmit = async (e) => {
   setSubmitSuccess(false);
 
   try {
+    console.log('📤 Sending form data:', formData);
+    
     const response = await fetch('/api/contact', {
       method: 'POST',
       headers: {
@@ -115,12 +117,19 @@ const handleSubmit = async (e) => {
     });
 
     const result = await response.json();
+    
+    console.log('📨 API Response:', result);
 
-    if (!response.ok || !result.success) {
-      throw new Error(result.error || 'Failed to send message');
+    if (!response.ok) {
+      throw new Error(result.error || `Server error: ${response.status}`);
+    }
+
+    if (!result.success) {
+      throw new Error(result.error || 'Failed to send email');
     }
 
     // Success!
+    console.log('✅ Email sent successfully!');
     setSubmitSuccess(true);
     
     // Reset form after 5 seconds
@@ -138,8 +147,8 @@ const handleSubmit = async (e) => {
     }, 5000);
 
   } catch (error) {
-    console.error('Error:', error);
-    alert(error.message || 'Something went wrong. Please try again.');
+    console.error('❌ Form submission error:', error);
+    alert(`Error: ${error.message}\n\nPlease contact us directly at strategic@asblogistics.nl`);
   } finally {
     setIsSubmitting(false);
   }

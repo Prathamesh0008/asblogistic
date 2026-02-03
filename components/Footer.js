@@ -24,7 +24,7 @@ export default function Footer() {
                     />
                   </div>
                 </Link>
-                <p className="text-xs text-gray-400 mt-1">B.V.</p>
+                
               </div>
               <p className="text-gray-400 mb-6 text-sm lg:text-base">
                 Professional logistics solutions for businesses across Europe. 
