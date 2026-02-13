@@ -36,7 +36,7 @@ const contactInfo = [
   {
     icon: MapPin,
     title: 'India Regional HQ',
-    details: [' Office no-2, 1st Floor', 'Sector-4, Palm Beach Rd, near PALM BEACH RESIDENCY, Nerul West, Maharashtra 400706'],
+    details: ['7th Floor, Commerz II', 'International Business Park', 'Oberoi Garden City, Mumbai 400063'],
     description: 'South Asia Operations Center',
     color: NEW_BLUE,
     bgColor: 'rgba(43, 95, 142, 0.1)'

@@ -12,7 +12,7 @@ const contactInfo = [
   {
     icon: Phone,
     title: 'Immediate Support',
-    details: ['+31 (0) 180 123 456', '+91 22 1234 5678'],
+    details: ['+31 (0) 180 123 456', '+31 (0) 180 123 457'],
     description: '24/7 emergency line available',
     color: NEW_YELLOW,
     bgColor: 'rgba(247, 162, 51, 0.15)'
@@ -20,34 +20,26 @@ const contactInfo = [
   {
     icon: Mail,
     title: 'Strategic Partnership',
-    details: ['strategic@asblogistics.nl', 'india@asblogistics.in'],
+    details: ['strategic@asblogistics.nl', 'ceo@asblogistics.nl'],
     description: 'Executive response within 4 hours',
     color: NEW_BLUE,
     bgColor: 'rgba(43, 95, 142, 0.1)'
   },
   {
     icon: MapPin,
-    title: 'Global HQ - Netherlands',
+    title: 'Global HQ',
     details: ['Logistiekweg 12', '2991 LV Barendrecht', 'Rotterdam Area'],
     description: 'Visit our Innovation Center',
     color: NEW_YELLOW,
     bgColor: 'rgba(247, 162, 51, 0.15)'
   },
   {
-    icon: MapPin,
-    title: 'India Regional HQ',
-    details: [' Office no-2, 1st Floor', 'Sector-4, Palm Beach Rd, near PALM BEACH RESIDENCY, Nerul West, Maharashtra 400706'],
-    description: 'South Asia Operations Center',
-    color: NEW_BLUE,
-    bgColor: 'rgba(43, 95, 142, 0.1)'
-  },
-  {
     icon: Globe,
     title: 'Global Network',
-    details: ['15+ Countries', '25+ Facilities', 'EU-Wide & Asia Coverage'],
+    details: ['15+ Countries', '25+ Facilities', 'EU-Wide Coverage'],
     description: 'International logistics specialists',
-    color: NEW_YELLOW,
-    bgColor: 'rgba(247, 162, 51, 0.15)'
+    color: NEW_BLUE,
+    bgColor: 'rgba(43, 95, 142, 0.1)'
   }
 ]
 
@@ -60,11 +52,11 @@ const departments = [
     description: 'Enterprise solutions and long-term collaboration'
   },
   {
-    name: 'India Operations',
-    email: 'india@asblogistics.in',
-    phone: '+91 22 1234 5678',
+    name: 'Growth Advisory',
+    email: 'growth@asblogistics.nl',
+    phone: '+31 (0) 180 123 457',
     icon: TrendingUp,
-    description: 'South Asia market expansion & operations'
+    description: 'Scale optimization and market expansion'
   },
   {
     name: 'Technical Operations',
@@ -86,8 +78,7 @@ const features = [
   '24/7 Multilingual Support',
   'Average Response Time: 15 min',
   'SLA Guaranteed 99.9% Uptime',
-  'Enterprise Security Protocols',
-  'India Operations: IST Business Hours'
+  'Enterprise Security Protocols'
 ]
 
 export default function ContactPage() {
@@ -195,7 +186,7 @@ const handleSubmit = async (e) => {
             
             <p className="text-xl max-w-3xl mx-auto opacity-95 mb-10">
               Connect with logistics architects who transform supply chains into competitive advantages. 
-              Your vision, our execution — now serving the Indian subcontinent.
+              Your vision, our execution.
             </p>
           </div>
         </div>
@@ -204,7 +195,7 @@ const handleSubmit = async (e) => {
       {/* Interactive Contact Grid */}
       <section className="py-20 relative -mt-10">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {contactInfo.map((info, index) => (
               <div 
                 key={index} 
@@ -320,7 +311,7 @@ const handleSubmit = async (e) => {
                           borderColor: 'rgba(43, 95, 142, 0.2)',
                           backgroundColor: 'rgba(255, 255, 255, 0.9)'
                         }}
-                        placeholder="Fortune 500 Company BV / Pvt Ltd"
+                        placeholder="Fortune 500 Company BV"
                       />
                     </div>
                   </div>
@@ -360,7 +351,7 @@ const handleSubmit = async (e) => {
                           borderColor: 'rgba(43, 95, 142, 0.2)',
                           backgroundColor: 'rgba(255, 255, 255, 0.9)'
                         }}
-                        placeholder="+31 6 12345678 / +91 22 12345678"
+                        placeholder="+31 6 12345678"
                       />
                     </div>
                   </div>
@@ -381,7 +372,6 @@ const handleSubmit = async (e) => {
                     >
                       <option value="strategic">Strategic Partnership</option>
                       <option value="growth">Growth Advisory</option>
-                      <option value="india">India Operations</option>
                       <option value="technical">Technical Integration</option>
                       <option value="success">Client Success</option>
                       <option value="emergency">24/7 Emergency Support</option>
@@ -403,7 +393,7 @@ const handleSubmit = async (e) => {
                         borderColor: 'rgba(43, 95, 142, 0.2)',
                         backgroundColor: 'rgba(255, 255, 255, 0.9)'
                       }}
-                      placeholder="Global Distribution Network Optimization / India Market Entry"
+                      placeholder="Global Distribution Network Optimization"
                     />
                   </div>
 
@@ -422,7 +412,7 @@ const handleSubmit = async (e) => {
                         borderColor: 'rgba(43, 95, 142, 0.2)',
                         backgroundColor: 'rgba(255, 255, 255, 0.9)'
                       }}
-                      placeholder="Brief us on your current logistics challenges, growth objectives, timeline, and region of interest..."
+                      placeholder="Brief us on your current logistics challenges, growth objectives, and timeline..."
                     ></textarea>
                   </div>
 
@@ -467,9 +457,9 @@ const handleSubmit = async (e) => {
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="text-center">
                         <Map className="h-16 w-16 mx-auto mb-6" style={{ color: NEW_YELLOW }} />
-                        <p className="text-2xl font-bold mb-2" style={{ color: NEW_BLUE }}>Global Command Centers</p>
+                        <p className="text-2xl font-bold mb-2" style={{ color: NEW_BLUE }}>Global Command Center</p>
                         <p className="text-gray-700 max-w-md mx-auto">
-                          Strategic HQs in Europe's logistics corridor and India's commercial capital
+                          Our strategic HQ in the heart of Europe's logistics corridor
                         </p>
                       </div>
                     </div>
@@ -479,14 +469,12 @@ const handleSubmit = async (e) => {
                       <div className="relative">
                         <div className="h-4 w-4 rounded-full animate-ping" style={{ backgroundColor: NEW_YELLOW, opacity: 0.6 }} />
                         <div className="h-3 w-3 rounded-full absolute top-0.5 left-0.5" style={{ backgroundColor: NEW_YELLOW }} />
-                        <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs font-bold whitespace-nowrap" style={{ color: NEW_BLUE }}>Rotterdam</span>
                       </div>
                     </div>
-                    <div className="absolute bottom-1/3 right-1/4">
+                    <div className="absolute bottom-1/3 right-1/3">
                       <div className="relative">
                         <div className="h-4 w-4 rounded-full animate-ping" style={{ animationDelay: '0.2s', backgroundColor: NEW_BLUE, opacity: 0.6 }} />
                         <div className="h-3 w-3 rounded-full absolute top-0.5 left-0.5" style={{ backgroundColor: NEW_BLUE }} />
-                        <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs font-bold whitespace-nowrap" style={{ color: NEW_BLUE }}>Mumbai</span>
                       </div>
                     </div>
                   </div>
@@ -494,10 +482,10 @@ const handleSubmit = async (e) => {
                 
                 <div className="mt-6 grid grid-cols-2 gap-4">
                   {[
-                    { label: 'Netherlands HQ', value: '51.8564° N, 4.5401° E' },
-                    { label: 'India HQ', value: '19.0760° N, 72.8777° E' },
-                    { label: 'Port Distance', value: '12km to Rotterdam, 15km to JNPT' },
-                    { label: 'Airport', value: '8km to Rotterdam Hague, 12km to BOM' }
+                    { label: 'Coordinates', value: '51.8564° N, 4.5401° E' },
+                    { label: 'Port Distance', value: '12km to Rotterdam' },
+                    { label: 'Airport', value: '8km to Rotterdam Hague' },
+                    { label: 'EU Hub', value: 'Central Distribution' }
                   ].map((item, idx) => (
                     <div 
                       key={idx} 
@@ -630,33 +618,19 @@ const handleSubmit = async (e) => {
               </p>
               
               <div className="flex flex-col items-center gap-6">
-                <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                  <a
-                    href="tel:+31180123456"
-                    className="group text-3xl font-bold hover:scale-105 transition-transform inline-flex items-center gap-4"
-                    style={{ color: NEW_YELLOW }}
-                  >
-                    <div className="relative">
-                      <div className="h-10 w-10 rounded-full animate-ping absolute" style={{ backgroundColor: NEW_YELLOW, opacity: 0.3 }} />
-                      <Phone className="h-10 w-10 relative" />
-                    </div>
-                    +31 (0) 180 123 456
-                  </a>
-                  <span className="text-white/50 text-xl">|</span>
-                  <a
-                    href="tel:+912212345678"
-                    className="group text-3xl font-bold hover:scale-105 transition-transform inline-flex items-center gap-4"
-                    style={{ color: NEW_YELLOW }}
-                  >
-                    <div className="relative">
-                      <div className="h-10 w-10 rounded-full animate-ping absolute" style={{ backgroundColor: NEW_YELLOW, opacity: 0.3 }} />
-                      <Phone className="h-10 w-10 relative" />
-                    </div>
-                    +91 22 1234 5678
-                  </a>
-                </div>
+                <a
+                  href="tel:+31180123456"
+                  className="group text-4xl font-bold hover:scale-105 transition-transform inline-flex items-center gap-4"
+                  style={{ color: NEW_YELLOW }}
+                >
+                  <div className="relative">
+                    <div className="h-12 w-12 rounded-full animate-ping absolute" style={{ backgroundColor: NEW_YELLOW, opacity: 0.3 }} />
+                    <Phone className="h-12 w-12 relative" />
+                  </div>
+                  +31 (0) 180 123 456
+                </a>
                 
-                <div className="flex flex-col sm:flex-row gap-4 mt-4">
+                <div className="flex flex-col sm:flex-row gap-4">
                   <Link
                     href="/emergency"
                     className="group inline-flex items-center px-8 py-4 rounded-xl font-bold transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl"
