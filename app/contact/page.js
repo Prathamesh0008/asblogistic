@@ -297,7 +297,7 @@ const handleSubmit = async (e) => {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-5 py-4 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:scale-[1.02]"
+                        className="w-full px-5 py-4 text-gray-600 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:scale-[1.02]"
                         style={{ 
                           borderColor: 'rgba(43, 95, 142, 0.2)',
                           backgroundColor: 'rgba(255, 255, 255, 0.9)'
@@ -315,7 +315,7 @@ const handleSubmit = async (e) => {
                         name="company"
                         value={formData.company}
                         onChange={handleChange}
-                        className="w-full px-5 py-4 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:scale-[1.02]"
+                        className="w-full px-5 py-4 text-gray-600 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:scale-[1.02]"
                         style={{ 
                           borderColor: 'rgba(43, 95, 142, 0.2)',
                           backgroundColor: 'rgba(255, 255, 255, 0.9)'
@@ -337,7 +337,7 @@ const handleSubmit = async (e) => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-5 py-4 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:scale-[1.02]"
+                        className="w-full px-5 py-4 text-gray-600 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:scale-[1.02]"
                         style={{ 
                           borderColor: 'rgba(43, 95, 142, 0.2)',
                           backgroundColor: 'rgba(255, 255, 255, 0.9)'
@@ -355,7 +355,7 @@ const handleSubmit = async (e) => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-5 py-4 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:scale-[1.02]"
+                        className="w-full px-5 py-4 text-gray-600 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:scale-[1.02]"
                         style={{ 
                           borderColor: 'rgba(43, 95, 142, 0.2)',
                           backgroundColor: 'rgba(255, 255, 255, 0.9)'
@@ -373,7 +373,7 @@ const handleSubmit = async (e) => {
                       name="department"
                       value={formData.department}
                       onChange={handleChange}
-                      className="w-full px-5 py-4 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:scale-[1.02] appearance-none"
+                      className="w-full px-5 py-4 text-gray-600 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:scale-[1.02] appearance-none"
                       style={{ 
                         borderColor: 'rgba(43, 95, 142, 0.2)',
                         backgroundColor: 'rgba(255, 255, 255, 0.9)'
@@ -398,7 +398,7 @@ const handleSubmit = async (e) => {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="w-full px-5 py-4 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:scale-[1.02]"
+                      className="w-full text-gray-600 px-5 py-4 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:scale-[1.02]"
                       style={{ 
                         borderColor: 'rgba(43, 95, 142, 0.2)',
                         backgroundColor: 'rgba(255, 255, 255, 0.9)'
@@ -417,7 +417,7 @@ const handleSubmit = async (e) => {
                       onChange={handleChange}
                       required
                       rows={6}
-                      className="w-full px-5 py-4 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:scale-[1.02] resize-none"
+                      className="w-full px-5 py-4 text-gray-800 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:scale-[1.02] resize-none"
                       style={{ 
                         borderColor: 'rgba(43, 95, 142, 0.2)',
                         backgroundColor: 'rgba(255, 255, 255, 0.9)'
