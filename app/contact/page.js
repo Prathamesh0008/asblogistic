@@ -1,12 +1,21 @@
 'use client'
 
 import { Phone, Mail, MapPin, Clock, Send, User, Building, MessageSquare, Globe, Shield, Headphones, CheckCircle, ArrowRight, Map, TrendingUp, Cpu } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Link from 'next/link'
+import emailjs from '@emailjs/browser'
 
 // Color definitions
 const NEW_BLUE = 'rgb(43,95,142)' // #2B5F8E
 const NEW_YELLOW = 'rgb(247,162,51)' // #F7A233
+
+// EmailJS Configuration
+const EMAILJS_CONFIG = {
+  PUBLIC_KEY: 'KNQmbQxBKNPAI5qHu', // Get from EmailJS
+  SERVICE_ID: 'service_b5rohns', // Your EmailJS service ID
+  TEMPLATE_ADMIN: 'template_hqa3dsw', // Your admin template ID
+  TEMPLATE_USER: 'template_k8hiscs' // Your user template ID
+}
 
 const contactInfo = [
   {
@@ -20,7 +29,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: 'Strategic Partnership',
-    details: ['strategic@asblogistics.nl', 'india@asblogistics.in'],
+    details: ['strategic@asblogistics.nl', 'info@asblogi.com'],
     description: 'Executive response within 4 hours',
     color: NEW_BLUE,
     bgColor: 'rgba(43, 95, 142, 0.1)'
@@ -91,6 +100,7 @@ const features = [
 ]
 
 export default function ContactPage() {
+  const formRef = useRef()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -103,65 +113,113 @@ export default function ContactPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [submitError, setSubmitError] = useState('')
+
+  // Initialize EmailJS
+  useState(() => {
+    emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY)
+  }, [])
 
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
+    // Clear error when user starts typing
+    if (submitError) setSubmitError('')
   }
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setIsSubmitting(true);
-  setSubmitSuccess(false);
-
-  try {
-    console.log('📤 Sending form data:', formData);
-    
-    const response = await fetch('/api/contact', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
-
-    const result = await response.json();
-    
-    console.log('📨 API Response:', result);
-
-    if (!response.ok) {
-      throw new Error(result.error || `Server error: ${response.status}`);
-    }
-
-    if (!result.success) {
-      throw new Error(result.error || 'Failed to send email');
-    }
-
-    // Success!
-    console.log('✅ Email sent successfully!');
-    setSubmitSuccess(true);
-    
-    // Reset form after 5 seconds
-    setTimeout(() => {
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        phone: '',
-        subject: '',
-        message: '',
-        department: 'strategic'
-      });
-      setSubmitSuccess(false);
-    }, 5000);
-
-  } catch (error) {
-    console.error('❌ Form submission error:', error);
-    alert(`Error: ${error.message}\n\nPlease contact us directly at strategic@asblogistics.nl`);
-  } finally {
-    setIsSubmitting(false);
+  const generateReferenceId = () => {
+    return 'ASB-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substring(2, 6).toUpperCase()
   }
-};
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitError('')
+    setSubmitSuccess(false)
+
+    try {
+      const referenceId = generateReferenceId()
+      const submissionDate = new Date().toLocaleString('en-US', { 
+        timeZone: 'UTC',
+        dateStyle: 'full',
+        timeStyle: 'short'
+      })
+
+      // Prepare template parameters
+      const templateParams = {
+        // Common params
+        name: formData.name,
+        email: formData.email,
+        company: formData.company || 'Not provided',
+        phone: formData.phone || 'Not provided',
+        subject: formData.subject,
+        message: formData.message,
+        department: formData.department,
+        reference_id: referenceId,
+        submission_date: submissionDate,
+        
+        // Admin specific
+        to_email: 'info@asblogi.com',
+        admin_name: 'ASB Logistics Team',
+        
+        // User specific
+        user_name: formData.name,
+        from_name: 'ASB Logistics',
+        reply_to: 'info@asblogi.com'
+      }
+
+      // Send email to admin
+      console.log('📤 Sending admin notification...')
+      const adminResult = await emailjs.send(
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.TEMPLATE_ADMIN,
+        {
+          ...templateParams,
+          to_email: 'info@asblogi.com',
+          to_name: 'ASB Logistics Admin'
+        }
+      )
+      
+      console.log('✅ Admin email sent:', adminResult)
+
+      // Send auto-reply to user
+      console.log('📤 Sending user auto-reply...')
+      const userResult = await emailjs.send(
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.TEMPLATE_USER,
+        {
+          ...templateParams,
+          to_email: formData.email,
+          to_name: formData.name
+        }
+      )
+      
+      console.log('✅ User email sent:', userResult)
+
+      // Success!
+      setSubmitSuccess(true)
+      
+      // Reset form after 5 seconds
+      setTimeout(() => {
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          phone: '',
+          subject: '',
+          message: '',
+          department: 'strategic'
+        })
+        setSubmitSuccess(false)
+      }, 5000)
+
+    } catch (error) {
+      console.error('❌ EmailJS error:', error)
+      setSubmitError(error.text || 'Failed to send message. Please try again or contact us directly.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
@@ -268,7 +326,7 @@ const handleSubmit = async (e) => {
                 
                 {submitSuccess && (
                   <div 
-                    className="mb-8 p-6 rounded-xl backdrop-blur-sm"
+                    className="mb-8 p-6 rounded-xl backdrop-blur-sm animate-fadeIn"
                     style={{ 
                       backgroundColor: 'rgba(16, 185, 129, 0.1)',
                       border: '1px solid rgba(16, 185, 129, 0.2)'
@@ -278,13 +336,31 @@ const handleSubmit = async (e) => {
                       <CheckCircle className="h-6 w-6" style={{ color: '#10B981' }} />
                       <div>
                         <p className="font-bold text-gray-900">Strategic connection established!</p>
-                        <p className="text-gray-700">Our executive team will contact you within 2 business hours.</p>
+                        <p className="text-gray-700">Our executive team will contact you within 2 business hours. A confirmation has been sent to your email.</p>
                       </div>
                     </div>
                   </div>
                 )}
 
-                <form onSubmit={handleSubmit} className="space-y-8">
+                {submitError && (
+                  <div 
+                    className="mb-8 p-6 rounded-xl backdrop-blur-sm"
+                    style={{ 
+                      backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                      border: '1px solid rgba(239, 68, 68, 0.2)'
+                    }}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="h-6 w-6 text-red-600">⚠️</div>
+                      <div>
+                        <p className="font-bold text-gray-900">Submission Error</p>
+                        <p className="text-gray-700">{submitError}</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-8">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-semibold mb-3 uppercase tracking-wide" style={{ color: NEW_BLUE }}>
@@ -299,7 +375,7 @@ const handleSubmit = async (e) => {
                         required
                         className="w-full px-5 py-4 text-gray-600 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:scale-[1.02]"
                         style={{ 
-                          borderColor: 'rgba(43, 95, 142, 0.2)',
+                          borderColor: submitError ? 'rgba(239, 68, 68, 0.5)' : 'rgba(43, 95, 142, 0.2)',
                           backgroundColor: 'rgba(255, 255, 255, 0.9)'
                         }}
                         placeholder="Chief Logistics Officer"
@@ -339,7 +415,7 @@ const handleSubmit = async (e) => {
                         required
                         className="w-full px-5 py-4 text-gray-600 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:scale-[1.02]"
                         style={{ 
-                          borderColor: 'rgba(43, 95, 142, 0.2)',
+                          borderColor: submitError ? 'rgba(239, 68, 68, 0.5)' : 'rgba(43, 95, 142, 0.2)',
                           backgroundColor: 'rgba(255, 255, 255, 0.9)'
                         }}
                         placeholder="cl.o@enterprise.com"
@@ -379,12 +455,12 @@ const handleSubmit = async (e) => {
                         backgroundColor: 'rgba(255, 255, 255, 0.9)'
                       }}
                     >
-                      <option value="strategic">Strategic Partnership</option>
-                      <option value="growth">Growth Advisory</option>
-                      <option value="india">India Operations</option>
-                      <option value="technical">Technical Integration</option>
-                      <option value="success">Client Success</option>
-                      <option value="emergency">24/7 Emergency Support</option>
+                      <option value="Strategic Partnership">Strategic Partnership</option>
+                      <option value="Growth Advisory">Growth Advisory</option>
+                      <option value="India Operations">India Operations</option>
+                      <option value="Technical Integration">Technical Integration</option>
+                      <option value="Client Success">Client Success</option>
+                      <option value="Emergency Support">24/7 Emergency Support</option>
                     </select>
                   </div>
 
@@ -400,7 +476,7 @@ const handleSubmit = async (e) => {
                       required
                       className="w-full text-gray-600 px-5 py-4 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:scale-[1.02]"
                       style={{ 
-                        borderColor: 'rgba(43, 95, 142, 0.2)',
+                        borderColor: submitError ? 'rgba(239, 68, 68, 0.5)' : 'rgba(43, 95, 142, 0.2)',
                         backgroundColor: 'rgba(255, 255, 255, 0.9)'
                       }}
                       placeholder="Global Distribution Network Optimization / India Market Entry"
@@ -419,7 +495,7 @@ const handleSubmit = async (e) => {
                       rows={6}
                       className="w-full px-5 py-4 text-gray-800 rounded-xl border-2 transition-all duration-300 focus:outline-none focus:scale-[1.02] resize-none"
                       style={{ 
-                        borderColor: 'rgba(43, 95, 142, 0.2)',
+                        borderColor: submitError ? 'rgba(239, 68, 68, 0.5)' : 'rgba(43, 95, 142, 0.2)',
                         backgroundColor: 'rgba(255, 255, 255, 0.9)'
                       }}
                       placeholder="Brief us on your current logistics challenges, growth objectives, timeline, and region of interest..."
@@ -448,6 +524,11 @@ const handleSubmit = async (e) => {
                       </>
                     )}
                   </button>
+                  
+                  <p className="text-xs text-gray-500 text-center mt-4">
+                    By submitting this form, you agree to our privacy policy and terms of service.
+                    A confirmation email will be sent to your provided email address.
+                  </p>
                 </form>
               </div>
             </div>
@@ -688,6 +769,24 @@ const handleSubmit = async (e) => {
           </div>
         </div>
       </section>
+
+      {/* Add this CSS for animations */}
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-fadeIn {
+          animation: fadeIn 0.5s ease-out;
+        }
+      `}</style>
     </div>
   )
 }
