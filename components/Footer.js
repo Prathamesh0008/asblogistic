@@ -131,7 +131,7 @@ export default function Footer() {
           {/* Bottom section */}
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
             <p className="text-sm lg:text-base">&copy; {new Date().getFullYear()} ASB Logistics B.V. All rights reserved.</p>
-            <p className="mt-2 text-xs lg:text-sm">KVK: 12345678 | VAT: NL123456789B01</p>
+            
           </div>
         </div>
       </div>

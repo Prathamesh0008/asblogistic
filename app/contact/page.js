@@ -29,7 +29,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: 'Strategic Partnership',
-    details: ['strategic@asblogistics.nl', 'info@asblogi.com'],
+    details: ['info@asblogi.com'],
     description: 'Executive response within 4 hours',
     color: NEW_BLUE,
     bgColor: 'rgba(43, 95, 142, 0.1)'
@@ -63,7 +63,7 @@ const contactInfo = [
 const departments = [
   {
     name: 'Strategic Partnerships',
-    email: 'strategic@asblogistics.nl',
+    email: 'info@asblogi.com',
     phone: '+31 (0) 180 123 456',
     icon: Shield,
     description: 'Enterprise solutions and long-term collaboration'

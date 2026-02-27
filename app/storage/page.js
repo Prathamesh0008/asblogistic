@@ -49,9 +49,7 @@ export default function StoragePage() {
       <section className="relative bg-gradient-to-r from-asb-blue to-[rgb(33,85,132)] text-white py-16">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center">
-            <div className="inline-flex items-center px-4 py-2 bg-[#F7A233]/20 rounded-full mb-6">
-              <span className="text-white font-semibold text-sm">ASB LOGISTICS B.V.</span>
-            </div>
+            
             <Warehouse className="h-16 w-16 mx-auto mb-6 text-[#F7A233]" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Storage Barendrecht</h1>
             <p className="text-xl max-w-3xl mx-auto opacity-95 mb-8">

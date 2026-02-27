@@ -95,12 +95,7 @@ export default function OfferPage() {
       >
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center">
-            <div 
-              className="inline-flex items-center px-4 py-2 rounded-full mb-6"
-              style={{ backgroundColor: 'rgba(247, 162, 51, 0.2)' }} // 20% opacity
-            >
-              <span className="text-white font-semibold text-sm">ASB LOGISTICS B.V.</span>
-            </div>
+            
             <h1 className="text-4xl md:text-5xl font-bold mb-6">What We Offer</h1>
             <p className="text-xl max-w-3xl mx-auto opacity-95">
               Comprehensive logistics solutions tailored to your business needs. From storage to distribution, we've got you covered.
