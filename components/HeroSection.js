@@ -246,9 +246,6 @@ export default function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div>
-            <div className="inline-flex items-center px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full mb-6 border border-[#F7A233]/30 shadow-sm">
-              <span className="text-asb-blue font-semibold text-sm">ASB LOGISTICS B.V.</span>
-            </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-asb-blue mb-6 leading-tight drop-shadow-sm">
               Tailor-made fulfilment for 

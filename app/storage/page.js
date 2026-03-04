@@ -76,21 +76,21 @@ export default function StoragePage() {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center p-6 bg-asb-light-gray rounded-xl border border-gray-200">
               <Truck className="h-12 w-12 text-asb-blue mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-3">Highway Access</h3>
+              <h3 className="text-xl text-asb-blue font-bold mb-3">Highway Access</h3>
               <p className="text-gray-600">Direct access to A15 and A29 highways</p>
               <div className="mt-4 text-[#F7A233] font-semibold">5 minutes</div>
             </div>
             
             <div className="text-center p-6 bg-asb-light-gray rounded-xl border border-gray-200">
               <Package className="h-12 w-12 text-asb-blue mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-3">Port of Rotterdam</h3>
+              <h3 className="text-xl text-asb-blue font-bold mb-3">Port of Rotterdam</h3>
               <p className="text-gray-600">Close proximity to Europe's largest port</p>
               <div className="mt-4 text-[#F7A233] font-semibold">15 minutes</div>
             </div>
             
             <div className="text-center p-6 bg-asb-light-gray rounded-xl border border-gray-200">
               <Users className="h-12 w-12 text-asb-blue mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-3">Business Hub</h3>
+              <h3 className="text-xl text-asb-blue font-bold mb-3">Business Hub</h3>
               <p className="text-gray-600">Located in Rotterdam's main logistics district</p>
               <div className="mt-4 text-[#F7A233] font-semibold">Prime location</div>
             </div>
