@@ -247,11 +247,10 @@ export default function HeroSection() {
           {/* Left Content */}
           <div>
             
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-asb-blue mb-6 leading-tight drop-shadow-sm">
-              Tailor-made fulfilment for 
-              <span className="text-[#F7A233] drop-shadow"> ambitious entrepreneurs</span>
-            </h1>
-            
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-asb-blue mb-6 leading-tight drop-shadow-sm">
+  Tailor-made fulfilment for 
+  <span className="text-[#F7A233] drop-shadow"> ambitious entrepreneurs</span>
+</h1>          
             <p className="text-xl text-gray-800 mb-8 leading-relaxed drop-shadow-sm">
               <span className="font-bold text-asb-blue">Grow your online store – we'll handle the rest</span><br />
               Whether you're just starting out or processing thousands of orders each month – we make sure logistics aren't a bottleneck, but a growth accelerator.

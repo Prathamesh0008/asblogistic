@@ -61,3 +61,26 @@ body {
     color: var(--color-asb-dark-gray);
   }
 }
+body {
+  font-family: var(--font-inter), sans-serif;
+}
+
+.logo-main {
+  font-family: var(--font-audiowide), sans-serif;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.logo-sub {
+  font-family: var(--font-michroma), sans-serif;
+  font-weight: 400;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+.logo-heading {
+  font-family: var(--font-audiowide), sans-serif;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
