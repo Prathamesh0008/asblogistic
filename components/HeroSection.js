@@ -251,12 +251,12 @@ export default function HeroSection() {
   Tailor-made fulfilment for 
   <span className="text-[#F7A233] drop-shadow"> ambitious entrepreneurs</span>
 </h1>          
-            <p className="text-xl text-gray-800 mb-8 leading-relaxed drop-shadow-sm">
+            <p className="text-lg font-bold text-asb-blue mb-8 leading-relaxed drop-shadow-sm">
               <span className="font-bold text-asb-blue">Grow your online store – we'll handle the rest</span><br />
               Whether you're just starting out or processing thousands of orders each month – we make sure logistics aren't a bottleneck, but a growth accelerator.
             </p>
             
-            <p className="text-lg text-gray-700 mb-10 drop-shadow-sm">
+            <p className="text-lg font-bold text-asb-blue mb-10 drop-shadow-sm">
               With our fulfilment service, we take care of storage, order processing, packaging, and shipping. You focus on your brand – we'll handle the rest.
             </p>
             
